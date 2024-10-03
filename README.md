@@ -13,8 +13,8 @@ sudo wget -q -O /usr/local/bin/ssh-permission-fixer https://raw.githubuserconten
 ```
 
 ## Usage
-After installed successfully just run command below in parent directory of `.ssh` folder.
-
+After installing successfully, navigate to the parent directory of the `.ssh` folder and run the command below:
 ```bash
 ssh-permission-fixer
 ```
+The script will automatically adjust the ownership and permissions of the `.ssh` directory and its contents according to the current directory's name.

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+CURRENT_DIR=$(basename "$PWD")
+
+if [ ! -d ".ssh" ]; then
+  echo ".ssh folder not found. Please run the script in the directory containing the .ssh folder."
+  exit 1
+fi
+
+chown -R "$CURRENT_DIR":"$CURRENT_DIR" .ssh
+chmod 700 .ssh
+chmod 600 .ssh/id_rsa
+chmod 644 .ssh/id_rsa.pub
+chmod 644 .ssh/authorized_keys
+chmod 644 .ssh/known_hosts
+
+echo "Permissions and ownership for .ssh folder and its contents have been successfully set."

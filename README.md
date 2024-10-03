@@ -13,4 +13,8 @@ sudo wget -q -O /usr/local/bin/ssh-permission-fixer https://raw.githubuserconten
 ```
 
 ## Usage
-After installed successfully just run `ssh-permission-fixer` in parent directory of `.ssh` folder.
+After installed successfully just run command below in parent directory of `.ssh` folder.
+
+```bash
+ssh-permission-fixer
+```

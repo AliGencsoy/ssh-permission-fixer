@@ -1,13 +1,25 @@
 #!/bin/bash
 
-CURRENT_DIR=$(basename "$PWD")
-
 if [ ! -d ".ssh" ]; then
   echo ".ssh folder not found. Please run the script in the directory containing the .ssh folder."
   exit 1
 fi
 
-chown -R "$CURRENT_DIR":"$CURRENT_DIR" .ssh
+CURRENT_DIR=$(basename "$PWD")
+CURRENT_USER=$(echo "$PWD" | awk -F'/' '{print $3}')
+
+if [[ "$PWD" == /home/* && -n "$CURRENT_USER" ]]; then
+  if id "$CURRENT_USER" &>/dev/null; then
+    USER_TO_USE="$CURRENT_USER"
+  else
+    echo "User '$CURRENT_USER' not found. Using the current user '$USER' instead."
+    USER_TO_USE="$USER"
+  fi
+else
+  USER_TO_USE="$USER"
+fi
+
+chown -R "$USER_TO_USE":"$USER_TO_USE" .ssh
 chmod 700 .ssh
 chmod 600 .ssh/id_*
 chmod 644 .ssh/id_*.pub
